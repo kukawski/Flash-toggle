@@ -1,0 +1,5 @@
+content flashtoggle chrome/
+style chrome://global/content/customizeToolbar.xul chrome://flashtoggle/content/button.css
+
+# Firefox
+overlay	chrome://browser/content/browser.xul chrome://flashtoggle/content/button.xul

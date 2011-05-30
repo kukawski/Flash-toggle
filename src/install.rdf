@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+
+<RDF xmlns="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:em="http://www.mozilla.org/2004/em-rdf#">
+
+  <Description
+    about="urn:mozilla:install-manifest"
+
+    em:name="Flash toggle"
+    em:description="Button for enabling and disabling flash plugin"
+    em:creator="Rafał Kukawski"
+
+    em:id="flash-toggle@kukawski.pl"
+    em:version="0.9"
+    em:homepageURL="http://kukawski.pl"
+
+    em:iconURL="chrome://flashtoggle/content/icon.png" >
+
+    <em:targetApplication>
+      <Description
+        em:id="{ec8030f7-c20a-464f-9b0e-13a3a9e97384}"
+        em:minVersion="4.0"
+        em:maxVersion="5.*" />
+    </em:targetApplication>
+
+    <em:file>
+      <Description
+        about="urn:mozilla:extension:flashtoggle"
+        em:package="content/flashtoggle/" />
+    </em:file>
+
+  </Description>
+
+</RDF>
