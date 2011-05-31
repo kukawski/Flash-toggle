@@ -12,9 +12,7 @@
 
     em:id="flash-toggle@kukawski.pl"
     em:version="0.9"
-    em:homepageURL="http://kukawski.pl"
-
-    em:iconURL="chrome://flashtoggle/content/icon.png" >
+    em:homepageURL="http://kukawski.pl">
 
     <em:targetApplication>
       <Description
