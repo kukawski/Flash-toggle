@@ -43,7 +43,7 @@ var FlashToggle = (function () {
     
     window.addEventListener("load", function () {
         i18n = document.getElementById("strings");
-        //findFlashPlugin(addonStateChanged);
+        findFlashPlugin(addonStateChanged);
     }, false);
     
     return {
