@@ -21,12 +21,6 @@
         em:maxVersion="5.*" />
     </em:targetApplication>
 
-    <em:file>
-      <Description
-        about="urn:mozilla:extension:flashtoggle"
-        em:package="content/flashtoggle/" />
-    </em:file>
-
   </Description>
 
 </RDF>
