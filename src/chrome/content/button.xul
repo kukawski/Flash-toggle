@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet type="text/css" href="chrome://flashtoggle/content/button.css" ?>
 
-<!DOCTYPE overlay >
+<!DOCTYPE overlay SYSTEM "chrome://flashtoggle/locale/flashtoggle.dtd">
 <overlay id="flashtoggle-overlay" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+    <stringbundleset id="stringbundleset">
+        <stringbundle id="strings" src="chrome://flashtoggle/locale/strings.properties"/>
+    </stringbundleset>
     <script type="application/javascript" src="chrome://flashtoggle/content/button.js"/>
 
     <toolbarpalette id="BrowserToolbarPalette">
         <toolbarbutton id="flashtoggle" />
     </toolbarpalette>
 
-    <toolbarbutton id="flashtoggle" label="Flash" tooltiptext="Kliknij aby włączyć lub wyłączyć Flash Playera" oncommand="FlashToggle.click()" class="toolbarbutton-1 chromeclass-toolbar-additional custombutton" />
+    <toolbarbutton id="flashtoggle" label="Flash" tooltiptext="&button.label;" oncommand="FlashToggle.click()" class="toolbarbutton-1 chromeclass-toolbar-additional custombutton" />
 </overlay>
