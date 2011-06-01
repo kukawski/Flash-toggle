@@ -4,6 +4,7 @@ var FlashToggle = (function () {
     const FLASH_PLUGIN = "Shockwave Flash";
     const DISABLED_CLASS = 'off';
     const AM = AddonManager;
+    var i18n;
     
     function addonStateChanged (addon) {
         if (addon && addon.type === "plugin" && addon.name === FLASH_PLUGIN) {
@@ -15,6 +16,10 @@ var FlashToggle = (function () {
                 button.classList.add(DISABLED_CLASS);
             } else {
                 button.classList.remove(DISABLED_CLASS);
+            }
+            
+            if (i18n) {
+                button.setAttribute('tooltiptext', i18n.getString(disabled ? 'button.enable_flash' : 'button.disable_flash'));
             }
         }
     }
@@ -37,6 +42,7 @@ var FlashToggle = (function () {
     });
     
     window.addEventListener("load", function () {
+        i18n = document.getElementById("strings");
         //findFlashPlugin(addonStateChanged);
     }, false);
     
