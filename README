@@ -1,0 +1,3 @@
+This Firefox extension lets you quickly disable and enable the Flash plugin. It is just a new toolbar button.
+Without this extension, to disable Flash you'd have to go to Tools -> Add-ons -> Plugins and click Enable/Disable button next to Shockwave Flash.
+It works with original Adobe Flash plugin. Tested on Ubuntu Linux and Windows.
