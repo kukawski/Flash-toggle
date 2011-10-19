@@ -3,7 +3,6 @@
     -moz-image-region: rect(0, 16px, 16px, 0);
 }
 
-#flashtoggle.off {
-    list-style-image: url("chrome://flashtoggle/content/flash-toggle-button-icon.png");
+#flashtoggle.off, #flashtoggle[disabled="true"] {
     -moz-image-region: rect(0, 32px, 16px, 16px);
 }

@@ -2,15 +2,17 @@ var FlashToggle = (function () {
     Components.utils.import("resource://gre/modules/AddonManager.jsm");
     
     const FLASH_PLUGIN = "Shockwave Flash";
-    const DISABLED_CLASS = 'off';
+    const ID = "flashtoggle";
+    const DISABLED_CLASS = "off";
     const AM = AddonManager;
     var i18n;
     
-    function addonStateChanged (addon) {
+    function addonStateChanged (addon, isUninstalled) {
         if (addon && addon.type === "plugin" && addon.name === FLASH_PLUGIN) {
             var disabled = addon.appDisabled || addon.userDisabled;
+            var button = document.getElementById(ID);
             
-            var button = document.getElementById('flashtoggle');
+            button.disabled = !!isUninstalled;
             
             if (disabled) {
                 button.classList.add(DISABLED_CLASS);
@@ -19,31 +21,46 @@ var FlashToggle = (function () {
             }
             
             if (i18n) {
-                button.setAttribute('tooltiptext', i18n.getString(disabled ? 'button.enable_flash' : 'button.disable_flash'));
+                button.setAttribute("tooltiptext", i18n.getString(isUninstalled ? "button.flash_doesnt_exist" : (disabled ? "button.enable_flash" : "button.disable_flash")));
             }
         }
     }
     
-    function findFlashPlugin (callback) {
+    function findFlashPlugin (success, failure) {
         AM.getAddonsByTypes(["plugin"], function (plugins) {
             for (var i = 0, l = plugins.length; i < l; i++) {
                 var plugin = plugins[i];
                 
                 if (plugin.name === FLASH_PLUGIN) {
-                    return callback(plugin);
+                    success && success(plugin);
+                    return;
                 }
             }
+            
+            failure && failure();
         });
+    }
+    
+    function flashNotFound () {
+        var button = document.getElementById(ID);
+        
+        button.disabled = true;
+        button.setAttribute("tooltiptext", i18n.getString("button.flash_doesnt_exist"));
     }
     
     AM.addAddonListener({
         onEnabled: addonStateChanged,
-        onDisabled: addonStateChanged
+        onDisabled: addonStateChanged,
+        onInstalled: addonStateChanged,
+        onUninstalled: function (addon) {
+            //addonStateChanged(addon, true);
+            findFlashPlugin(addonStateChanged, flashNotFound);
+        }
     });
     
     window.addEventListener("load", function () {
         i18n = document.getElementById("strings");
-        findFlashPlugin(addonStateChanged);
+        findFlashPlugin(addonStateChanged, flashNotFound);
     }, false);
     
     return {
