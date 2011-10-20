@@ -12,16 +12,19 @@ var FlashToggle = (function () {
             var disabled = addon.appDisabled || addon.userDisabled;
             var button = document.getElementById(ID);
             
-            button.disabled = !!isUninstalled;
+            if (button) { // it seems that, when a button is still in the toolbarpalette, the getElementById method doesn't find it
             
-            if (disabled) {
-                button.classList.add(DISABLED_CLASS);
-            } else {
-                button.classList.remove(DISABLED_CLASS);
-            }
-            
-            if (i18n) {
-                button.setAttribute("tooltiptext", i18n.getString(isUninstalled ? "button.flash_doesnt_exist" : (disabled ? "button.enable_flash" : "button.disable_flash")));
+                button.disabled = !!isUninstalled;
+                
+                if (disabled) {
+                    button.classList.add(DISABLED_CLASS);
+                } else {
+                    button.classList.remove(DISABLED_CLASS);
+                }
+                
+                if (i18n) {
+                    button.setAttribute("tooltiptext", i18n.getString(isUninstalled ? "button.flash_doesnt_exist" : (disabled ? "button.enable_flash" : "button.disable_flash")));
+                }
             }
         }
     }
@@ -44,8 +47,10 @@ var FlashToggle = (function () {
     function flashNotFound () {
         var button = document.getElementById(ID);
         
-        button.disabled = true;
-        button.setAttribute("tooltiptext", i18n.getString("button.flash_doesnt_exist"));
+        if (button) {  // it seems that, when a button is still in the toolbarpalette, the getElementById method doesn't find it
+            button.disabled = true;
+            button.setAttribute("tooltiptext", i18n.getString("button.flash_doesnt_exist"));
+        }
     }
     
     AM.addAddonListener({
@@ -67,7 +72,7 @@ var FlashToggle = (function () {
         click: function () {
             findFlashPlugin(function (plugin) {
                 plugin.userDisabled = !plugin.userDisabled;
-            });
+            }, flashNotFound);
         }
     };
 }());
