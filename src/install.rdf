@@ -11,14 +11,14 @@
     em:creator="Rafał Kukawski"
 
     em:id="flash-toggle@kukawski.pl"
-    em:version="0.9"
+    em:version="0.9.5"
     em:homepageURL="https://github.com/rafaelk/Flash-toggle">
 
     <em:targetApplication>
       <Description
         em:id="{ec8030f7-c20a-464f-9b0e-13a3a9e97384}"
         em:minVersion="4.0"
-        em:maxVersion="7.*" />
+        em:maxVersion="10.*" />
     </em:targetApplication>
 
   </Description>
